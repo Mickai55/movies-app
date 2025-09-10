@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "lib": ["dom", "es2015"],
+  },
+  "include": ["src", "vitest.config.ts"]
+}

@@ -1,0 +1,29 @@
+# Node / TS / React / Vite / Jest / Vitest
+node_modules/
+dist/
+build/
+coverage/
+*.log
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env
+.env
+.env.*
+!.env.example
+api/.env
+web/.env
+
+# Vite
+.vite/
+
+# TS
+*.tsbuildinfo
+
+# Docker
+docker-compose.override.yml
+
+# OS
+.DS_Store
+Thumbs.db
