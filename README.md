@@ -9,3 +9,7 @@ Small full-stack app that fetches OMDb search results on the **backend**, stores
 - **Testing:**  
   - Backend: Jest, ts-jest, Supertest, mongodb-memory-server  
   - Frontend: Vitest, React Testing Library, MSW
+
+# Demo
+https://github.com/user-attachments/assets/af935f0c-74f1-49b1-bc48-b5a6a91d0e6a
+
