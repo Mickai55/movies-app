@@ -10,7 +10,7 @@ Small full-stack app that fetches OMDb search results on the **backend**, stores
   - Frontend: Vitest, React Testing Library, MSW
 
 ## Demo
-https://github.com/user-attachments/assets/7a0e0e63-c7b7-4467-9180-365b9cb812fa
+https://github.com/user-attachments/assets/16970dd0-a324-47b1-b44b-d65afce9070b
 
 ## Setup local
 To run locally just download the code, add in api folder a file named .env with 
