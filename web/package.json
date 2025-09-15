@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "@vitejs/plugin-react-swc": "^4.0.1",
+    "lucide-react": "^0.544.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^7.9.1",
     "tailwind": "^4.0.0"
   },
   "devDependencies": {
@@ -24,6 +26,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^5.0.2",
     "autoprefixer": "^10.4.21",
     "jsdom": "^26.1.0",

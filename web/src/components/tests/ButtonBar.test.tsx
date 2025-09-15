@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import ButtonBar from "../ButtonBar";
+import ButtonBar from "../list/ButtonBar";
 
 test("calls onFetch with correct query and shows spinner on active button", async () => {
   const user = userEvent.setup();
