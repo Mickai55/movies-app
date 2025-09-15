@@ -36,11 +36,26 @@ export async function fetchAndStore(req: Request, res: Response) {
   res.json({ count: results.length, movies: results });
 }
 
-export async function listMovies(_req: Request, res: Response) {
+export async function listMovies(req: Request, res: Response) {
+  const sortField = String(req.query.sort || "createdAt");
+  const order = req.query.order === "asc" ? 1 : -1;
+  const page = Math.max(parseInt(String(req.query.page || "1"), 10), 1);
+  const limit = Math.max(parseInt(String(req.query.limit || "12"), 10), 1);
+
+  const total = await Movie.countDocuments();
+
   const movies = await Movie.find({})
     .populate("poster")
-    .sort({ createdAt: -1 })
-    .limit(200)
+    .sort({ [sortField]: order })
+    .skip((page - 1) * limit)
+    .limit(limit)
     .exec();
-  res.json({ movies });
+
+  res.json({
+    page,
+    limit,
+    total,
+    pages: Math.ceil(total / limit),
+    movies,
+  });
 }
