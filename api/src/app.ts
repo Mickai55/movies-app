@@ -1,30 +1,33 @@
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
+import cookieParser from "cookie-parser";
 import mongoose from "mongoose";
 import { config } from "./config";
 import moviesRouter from "./routes/movies.routes";
+import authRouter from "./routes/auth.routes";
+import profileRouter from "./routes/profile.routes";
 
 const app = express();
-app.use(cors());
-app.use(express.json());
 
-async function connectMongo() {
-  let uri = (config.mongoUri || "").trim();
-  if (uri === "memory") {
-    const { MongoMemoryServer } = await import("mongodb-memory-server");
-    const mongod = await MongoMemoryServer.create();
-    uri = mongod.getUri();
-    console.log("Using in-memory Mongo at", uri);
-  }
-  if (!uri.startsWith("mongodb://") && !uri.startsWith("mongodb+srv://")) {
-    throw new Error(`MONGO_URI invalid: ${uri}`);
-  }
-  await mongoose.connect(uri);
-  console.log("Mongo connected");
-}
-connectMongo().catch((err) => console.error("Mongo error", err));
+app.use(helmet());
+app.use(express.json());
+app.use(cookieParser());
+
+// CORS: allow your frontend origin and cookies (credentials)
+app.use(cors({
+  origin: (origin, cb) => cb(null, true), // or ['http://localhost:5173']
+  credentials: true,
+}));
+
+// Connect to Atlas
+mongoose.connect(config.mongoUri).then(() => console.log("Mongo connected")).catch(err => console.error("Mongo error", err));
 
 app.get("/health", (_req, res) => res.send("ok"));
+
+// Mount routes
+app.use("/api/auth", authRouter);
 app.use("/api/movies", moviesRouter);
+app.use("/api/profile", profileRouter);
 
 export default app;
