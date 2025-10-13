@@ -7,6 +7,7 @@ import { config } from "./config";
 import moviesRouter from "./routes/movies.routes";
 import authRouter from "./routes/auth.routes";
 import profileRouter from "./routes/profile.routes";
+import userMoviesRouter from "./routes/userMovies.routes";
 
 const app = express();
 
@@ -29,5 +30,6 @@ app.get("/health", (_req, res) => res.send("ok"));
 app.use("/api/auth", authRouter);
 app.use("/api/movies", moviesRouter);
 app.use("/api/profile", profileRouter);
+app.use("/api/user-movies", userMoviesRouter);
 
 export default app;

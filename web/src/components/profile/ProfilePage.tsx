@@ -7,6 +7,7 @@ const API_BASE = import.meta.env.VITE_API_BASE ?? "http://localhost:4000";
 const ProfilePage: React.FC = () => {
   const { user, refresh } = useAuth();
   const [username, setUsername] = useState(user?.username ?? "");
+  const [email, setEmail] = useState(user?.email ?? "");
   const [avatarUrl, setAvatarUrl] = useState(user?.avatarUrl ?? "");
   const [msg, setMsg] = useState("");
 
@@ -44,6 +45,12 @@ const ProfilePage: React.FC = () => {
         <input
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="border rounded-md px-3 py-2"
+        />
+        <label className="text-sm font-medium">Email</label>
+        <input
+          value={email}
+          disabled
           className="border rounded-md px-3 py-2"
         />
 

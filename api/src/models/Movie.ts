@@ -1,23 +1,17 @@
 import { Schema, model, Types } from "mongoose";
 
-export interface MovieDoc {
-  _id: Types.ObjectId;
-  imdbID: string; // unique key
-  title: string;
-  year?: string;
-  type?: string;
-  poster?: Types.ObjectId;
-}
-
-const MovieSchema = new Schema<MovieDoc>(
+const MovieSchema = new Schema(
   {
-    imdbID: { type: String, required: true, unique: true, index: true },
-    title: { type: String, required: true },
+    imdbID: { type: String, unique: false },
+    title: String,
     year: String,
     type: String,
     poster: { type: Schema.Types.ObjectId, ref: "Poster" },
+    createdBy: { type: Schema.Types.ObjectId, ref: "User", required: true }, // 👈 NEW
   },
   { timestamps: true }
 );
 
-export const Movie = model<MovieDoc>("Movie", MovieSchema);
+MovieSchema.index({ imdbID: 1, createdBy: 1 }, { unique: true }); // unique per user
+
+export const Movie = model("Movie", MovieSchema);

@@ -8,6 +8,7 @@ import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Navbar from "./components/home/NavBar";
 import ProfilePage from "./components/profile/ProfilePage";
+import MyMovies from "./components/profile/MyMovies";
 
 function App() {
   return (
@@ -32,6 +33,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/my-movies"
+              element={
+                <ProtectedRoute>
+                  <MyMovies />
                 </ProtectedRoute>
               }
             />

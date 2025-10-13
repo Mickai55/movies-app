@@ -10,8 +10,8 @@ const ButtonBar: React.FC<Props> = ({ onFetch, loading }) => {
   const [q, setQ] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const sort = searchParams.get("sort") || "title";
-  const order = searchParams.get("order") || "asc";
+  const sort = searchParams.get("sort") || "createdAt";
+  const order = searchParams.get("order") || "desc";
   const limit = searchParams.get("limit") || "12";
 
   const titles = ["Matrix", "Matrix Reloaded", "Matrix Revolutions"];
@@ -86,7 +86,7 @@ const ButtonBar: React.FC<Props> = ({ onFetch, loading }) => {
             Year
           </option>
           <option value="createdAt" className="text-gray-800 bg-white">
-            Date Added
+            Created At
           </option>
         </select>
 

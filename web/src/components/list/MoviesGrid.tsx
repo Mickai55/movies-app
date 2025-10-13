@@ -25,13 +25,14 @@ const MoviesGrid: React.FC = () => {
   async function loadAll() {
     try {
       setLoading(true);
-      const sort = searchParams.get("sort") || "title";
-      const order = searchParams.get("order") || "asc";
+      const sort = searchParams.get("sort") || "createdAt"; // title | year | createdAt
+      const order = searchParams.get("order") || "desc";
       const page = parseInt(searchParams.get("page") || "1", 10);
       const limit = parseInt(searchParams.get("limit") || "12", 10);
 
       const res = await fetch(
-        `${API_BASE}/api/movies?sort=${sort}&order=${order}&page=${page}&limit=${limit}`
+        `${API_BASE}/api/movies?sort=${sort}&order=${order}&page=${page}&limit=${limit}`,
+        { credentials: "include" }
       );
       const data = await res.json();
       setMovies(data.movies);
@@ -53,7 +54,9 @@ const MoviesGrid: React.FC = () => {
   async function onFetch(q: string) {
     setLoading(true);
     try {
-      await fetch(`${API_BASE}/api/movies/fetch?q=${encodeURIComponent(q)}`);
+      await fetch(`${API_BASE}/api/movies/fetch?q=${encodeURIComponent(q)}`, {
+        credentials: "include",
+      });
       await loadAll();
     } catch (err) {
       alert("Server Error: Failed to add movies to list");
@@ -91,7 +94,7 @@ const MoviesGrid: React.FC = () => {
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
             {movies.map((m, index) => (
-              <MovieCard key={m._id} movie={m} />
+              <MovieCard key={m._id} movie={m} index={index} />
             ))}
           </div>
 

@@ -7,3 +7,12 @@ export type Movie = {
   type?: string;
   poster?: Poster;
 };
+
+export interface User {
+  id: string;
+  email: string;
+  username: string;
+  avatarUrl?: string;
+  favorites?: Movie[];
+  ratedMovies?: { movie: Movie; rating: number }[];
+}
